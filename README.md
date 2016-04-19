@@ -16,6 +16,8 @@ What you will see in the folder:
 - `sgd.py` contains functions that train logsitic regression and neural net models using SGD.
 - `data.py` contains helper functions that load the MNIST data. Do **NOT** modify this file.
 
+Download mnist.zip from the [course website](https://courses.cs.washington.edu/courses/cse446/16sp/) and extract it to the same folder.
+
 You are **required** to use Python 2.7 and Numpy for vectorizing your calculations.  
 [Annaconda](https://www.continuum.io/downloads) offers Python 2.7 distribution with various scientific packages including Numpy. 
 # Step 1: Implmenting  `logistic()` [?? pts]
