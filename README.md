@@ -41,12 +41,12 @@ For now, you can assume that the model is always a single layer NN with a single
 
 The `model` class stores a list of weight matrices, `weights`, where the *i* th matrix corresponds to the weight matrix for the (*i+1*) th layer. For instance, if you have `[M1, M2, M3]`, the *0*th matrix *M1* corresponds to the weight matrix for the 1st hidden layer. The last matrix is always the weight matrix for the output layer. Again, we assume a single layer neural network with a signle output for now. Therefore,  `weights` is a length 1 Python list of *d* by *1* matrix, which corresponds to the weights for the output layer.
 
-The `model` class also stores a list of bias terms, `bias`. This is structured very similar to `weights`. For instance, let us say that you have `bias = [M1, M2]`. Then, M1 corresponds to the bias terms for the first hidden layer, and M2 corresponds to the bias terms for the last layer. Again, since we are first implementing logistic regression, you can assume that this is always `[np.matrix(b)]` where b is a float.
+The `model` class also stores a list of bias terms, `bias`. This is structured very similar to `weights`. For instance, let us say that you have `bias = [M1, M2]`. Then, M1 corresponds to the bias terms for the first hidden layer M2 corresponds to the bias terms for the last layer. Again, since we are first implementing logistic regression, you can assume that this is always `[np.matrix(b)]` where b is a float.
 
 The `model` constructor is already implemented for you. You do not have to change the constructor. 
 
 # Step 3.1: Implementing `predict()`  [?? pts]
-The `predict()` function takes in a datapoint and uses the current weight matrices to make a prediction. 
+The `predict()` function takes in a datapoint and uses the current weight matrices and bias terms to make a prediction. 
 
 Let us first start by explaining the structure of a datapoint. We represent a datapoint as a 2-element dictionary. The first key `label` is mapped to a matrix for the true label, and the second key `features` is mapped to a 1 by d matrix representing the features for the datapoint.
 
@@ -82,8 +82,6 @@ The `update()` function takes 4 arguments:
 
 Fill in `update()`.
 
-Here is the derivation of the partial gradient with respect to W_i. This might become handy later when you implement backpropagaion. 
-
 # Step 3.3: Implementing `train()` [?? pts]  
 The `train()` function performs [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to optimize your model. For each iteration, it randomly samples one datapoint with replacement, approximates the true gradients, and updates `weights` via gradient descent. The function takes 4 arguments.
 - `data`: a list of datapoints
@@ -94,14 +92,14 @@ The `train()` function performs [stochastic gradient descent](https://en.wikiped
 Fill in the `train()` function.
 
 # Step 3.4: Tuning your logistic regression model [?? pts]
-Now that your have all the basic functions implemented for logistic regression, you can train your model on the MNist data. The `Submission1` funtion trains your logistic regression model to classify handwritten 3s and 5s. Do you get validation accuracy over 90%? If not, you might want to debug your implementation.
+Now that your have all functions implemented for logistic regression, you can train your model on the MNist data. The `Submission1` funtion trains your logistic regression model on handwritten 3s and 5s. Do you get validation accuracy over 90%? If not, you might want to debug your implementation.
 
-The regularization constant `lam` is currently at 0, and `eta` is at 0.05. This means that you are getting no regularzation in your model. Tweek `lam`, `eta`, and `epochs` to obtain better validation accuracy. Often it is a good idea to start with a high learning rate and decrease it over time.
+The regularization constant `lam` is currently at 0.00001, and `eta` is at 0.05. Tweek `lam`, `eta`, and `epochs` to obtain better validation accuracy. Often it is a good idea to start with a high learning rate and decrease it over time.
 
 Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the peformance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
 
 # Step 4: Extending logistic regression to Neural Nets [?? pts]
-So far, we have implemented logistic regression as a single layer neural net with a output through a logisitc activation function. In this section, we will extend our model to a more general multi-layer neural net.  
+So far, we have implemented logistic regression as a single layer neural net with a signle output and a logistic activation function. In this section, we will extend our model to a more general multi-layer neural net.  
 
 The basis of learning a neural net is the same as that of logsitic regression. We will simply calculate a partial gradient with repsect to each weight and optimize the weight via gradient descent. The calculatation of the partial derivatives are performed by the algoirthm called backpropagation. The details of the algorithm can be found in the [lecture notes](https://courses.cs.washington.edu/courses/cse446/16sp/) or [here](http://neuralnetworksanddeeplearning.com/chap2.html).
 
@@ -110,9 +108,9 @@ We will start by implementing the feedforward step of the backpropagation algori
 
 Let us give you an example. Suppose we have a 3-layer neural net, and our `a` is
 ```
-a=[M0, M1, ... , Mn]
+a=[M0, M1, M2, Mn]
 ```
-M0 is exactly equal to the features of an input datapoint. M1 stores the post-synaptic activation values for the first layer, which can be obtained by combining W and M1. Mn represents the post-synaptic activation for the output layer. This is equal to the prediction of your model given the input datapoint. Notice that these matrices can be calculated dynamically, and you are **strongly** recommended to do so. You are also recommended to use Numpy matrix calculations whenever you can, since Python for-loops are sometimes costly.
+M0 is exactly equal to the features of an input datapoint. M1 stores the post-synaptic activation values for the first layer, which can be obtained by combining W and M1. Mn represents the post-synaptic activation for the output layer. This is equal to the prediction of your model given the input datapoint. Notice that these matrices can be calculated dynamically, and you are **strongly** recommended to do so. You are also recommended to use Numpy matrix calculations whenever you can, since Python for-loops are sometimes too costly.
 
 Fill in `feedforward()`. Also, modify `predict()` so that it uses the last matrix of `a` as a prediction. 
 
@@ -140,9 +138,9 @@ The `update()` function takes 4 arguments:
 Modify the `update()` function so that it updates the weights for all layers. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
 
 # Step 4.3: Evaulating a neural net model [?? pts]
-Your neural network model is now ready for training. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, you accuracy should be very similar to your earlier implementation. If not, you might have a bug in your code.
+Your neural network model is now ready for training. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
 
-Now lets add a single hidden layer with 15 nodes. Does your accuracy improve?
+Now lets add a single hidden layer with 15 nodes. Does it improve the performance?
 
 Try different numbers of hidden nodes/layers to improve your model as much as you can. Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the peformance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
 
