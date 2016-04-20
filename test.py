@@ -18,14 +18,14 @@ class SGDTest(unittest.TestCase):
         m = model([5,1])
         m.weights = [np.matrix([1,2,1,0,1]).T]
         m.bias = [np.matrix([0])]
-        point = {'features':np.matrix([.4,1,3,.01,.1]), 'label': 1}
+        point = {'label': 1, 'features':np.matrix([.4,1,3,.01,.1])}
         p = m.predict(point)
         self.assertAlmostEqual(p[0,0], 0.995929862284)
         
         m = model([5,1])
         m.weights = [np.matrix([3,5,-3,2,3]).T]
         m.bias = [np.matrix([0])]
-        point = {'features':np.matrix([.4,-0.2,3.1,.01,.1]), 'label': 1}
+        point = {'label': 1, 'features':np.matrix([.4,-0.2,3.1,.01,.1])}
         p = m.predict(point)
         self.assertAlmostEqual(p[0,0], 0.000153754441135)
 
@@ -54,12 +54,12 @@ class SGDTest(unittest.TestCase):
         predictions = [m.predict(p) for p in validation_data]
         print "Validation Accuracy:", accuracy(validation_data, predictions)
     
-
+    #unit test for feedforward
     def test_feedforward(self):
         m = model([5,3,1])
         m.weights = [np.arange(5*3).reshape((5,3)), np.matrix([3,5,-3]).T]
         m.bias = [np.matrix([1,-1,0]), np.matrix([1])]
-        point = {'features':np.matrix([1,-0.1,3,-2,0.1]), 'label': 1}
+        point = {'label': 1, 'features':np.matrix([1,-0.1,3,-2,0.1])}
         
         a = m.feedforward(point)
         answer = [np.matrix([[ 1., -0.1, 3, -2, 0.1]]), np.matrix([[ 0.86989153, 0.86989153, 0.99260846]]), np.matrix([[0.99318172]])]
@@ -67,11 +67,12 @@ class SGDTest(unittest.TestCase):
             for j in range(a[i].shape[1]):
                 self.assertAlmostEqual(a[i][0,j], answer[i][0,j])
 
+    #unit test for backprop
     def test_backpropagate(self):
         m = model([5,3,1])
         m.weights = [np.arange(5*3).reshape((5,3)), np.matrix([3,5,-3]).T]
         m.bias = [np.matrix([1,-1,0]), np.matrix([1])]
-        point = {'features':np.matrix([1,-0.1,3,-2,0.1]), 'label': 1}
+        point = {'label': 1, 'features':np.matrix([1,-0.1,3,-2,0.1])}
         
         a = m.feedforward(point)
         delta = m.backpropagate(a, np.matrix([1]))
