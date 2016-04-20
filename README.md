@@ -25,7 +25,7 @@ In `sgd.py`, you will find an empty function called `logistic()`. The `logistic(
 
 # Step 2: Implementing `accuracy()` [5 pts]
 We need a way to measure the performance of your model. The `accuracy()` function will do this for you.  
-It takes the follwoing arguments:
+It takes the following arguments:
 - `data`: a Python list of 1 by 1 Numpy matrices containing true labels. 
 - `predictions`: a Python list of 1 by 1 Numpy matrices containing your predictions. 
 
