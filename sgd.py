@@ -26,7 +26,7 @@ class model:
     def update(self, a, delta, eta, lam):
         pass
 
-    # TODO: Perfrom the forward step of backpropagation
+    # TODO: Perform the forward step of backpropagation
     def feedforward(self, point):
         pass
     
