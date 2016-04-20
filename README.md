@@ -1,7 +1,7 @@
 # Logistic Regression and Neural Networks using SGD
 In this assignment you are performing binary classification on handwritten digits data from [MNIST](http://yann.lecun.com/exdb/mnist/) database using logisitc regression and neural nets. 
 
-Here are some webpages that might help you understand the material in addition to the lecture slies/notes you can find under our course website. 
+Here are some webpages that might help you understand the material, in addition to the lecture slies/notes you can find under our course website. 
 - [Logistic regression (Wikipedia)](https://en.wikipedia.org/wiki/Logistic_regression)
 - [Neural Nets (Wikipedia)](https://en.wikipedia.org/wiki/Artificial_neural_network)
 - [Back Propagation](http://neuralnetworksanddeeplearning.com/chap2.html)
@@ -28,7 +28,7 @@ It takes the follwoing arguments:
 - `data`: a Python list of 1 by 1 Numpy matrices containing true labels. 
 - `predictions`: a Python list of 1 by 1 Numpy matrices containing your predictions. 
 
-Yes, it is little strange that this is a list of 1 by 1 matrices, but this will make it easier to extend logistic regression to neural nets. Given `data` and `predictions`, `accuracy()` simply computes `(# correct predictions)/(# predictions made)` and outputs it as a float. Fill in `accuracy()`.
+Yes, it is a bit strange that this is a list of 1 by 1 matrices, but this will make it easier to extend logistic regression to neural nets later in this assignment. Given `data` and `predictions`, `accuracy()` simply computes `(# correct predictions)/(# predictions made)` and outputs it as a float. Fill in `accuracy()`.
 
 # Step 3: Implementing logsitic regression as a single layer NN
 In this section, you will be implementing logistic regression as a single layer neural net with a single output.   
@@ -39,7 +39,9 @@ Let us start by explaining the `model` class. Upon instantiation, the `model` cl
 
 For now, you can assume that the model is always a single layer NN with a single output. So the argument to the constructor is always `[x,1]`, where *x* is the number of features in a data point. 
 
-The `model` class stores a list of weight matrices, `weights`, where the *i* th matrix corresponds to the weight matrix for the (*i+1*) th layer. For instance, if you have `[M1, M2, M3]`, the *0*th matrix *M1* corresponds to the weight matrix for the 1st hidden layer. The last matrix is always the weight matrix for the output layer. Again, we assume a single layer neural network with a signle output for now. Therefore,  `weights` is a length 1 list with *d* by *1* matrix corresponding to the weights for the output layer.
+The `model` class stores a list of weight matrices, `weights`, where the *i* th matrix corresponds to the weight matrix for the (*i+1*) th layer. For instance, if you have `[M1, M2, M3]`, the *0*th matrix *M1* corresponds to the weight matrix for the 1st hidden layer. The last matrix is always the weight matrix for the output layer. Again, we assume a single layer neural network with a signle output for now. Therefore,  `weights` is a length 1 Python list of *d* by *1* matrix, which corresponds to the weights for the output layer.
+
+The `model` class also stores a list of bias terms, `bias`. This is structured very similar to `weights`. For instance, let us say that you have `bias = [M1, M2]`. Then, M1 corresponds to the bias terms for the first hidden layer, and M2 corresponds to the bias terms for the last layer. Again, since we are first implementing logistic regression, you can assume that this is always `[np.matrix(b)]` where b is a float.
 
 The `model` constructor is already implemented for you. You do not have to change the constructor. 
 
