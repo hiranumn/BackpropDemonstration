@@ -38,8 +38,12 @@ class model:
     def train(self, data, epochs, rate, lam):
         pass
 
-def submission(data, lam=0.00001):
+def logistic_regression(data, lam=0.00001):
     m = model([data[0]["features"].shape[1], 1])
     m.train(data, 100, 0.05, lam)
     return m
     
+def neural_net(data, lam=0.00001):
+    m = model([data[0]["features"].shape[1], 15, 1])
+    m.train(data, 100, 0.05, lam)
+    return m

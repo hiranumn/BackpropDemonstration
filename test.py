@@ -1,7 +1,7 @@
 from unittest import TestCase
 import unittest
 import numpy as np
-from sgd import logistic, model, accuracy, submission 
+from sgd import logistic, model, accuracy, logistic_regression, neural_net
 from data import loadmnist
 
 class SGDTest(unittest.TestCase):
@@ -37,7 +37,9 @@ class SGDTest(unittest.TestCase):
 
     
     #training and running your model
-    def test_submission(self):
+    def test_logistic_regression(self):
+        print
+        print "Testing logistic regression.."
         #getting data using 80% of data as training.
         #If you want to test soething other than 3 vs 5, just change the input to loadmnist.
         #For example, loadmnist(1, 7)
@@ -46,7 +48,7 @@ class SGDTest(unittest.TestCase):
         validation_data =data[int(len(data)*0.8):]
 
         #train the model
-        m = submission(train_data)
+        m = logistic_regression(train_data)
 
         #evaluate
         predictions = [m.predict(p) for p in train_data]
@@ -81,6 +83,26 @@ class SGDTest(unittest.TestCase):
         for i in range(len(delta)):
             for j in range(delta[i].shape[1]):
                 self.assertAlmostEqual(delta[i][0,j], answer[i][0,j])
+
+    #training and running your model
+    def test_neural_net(self):
+        print "Testing neural net.."
+        print
+        #getting data using 80% of data as training.
+        #If you want to test soething other than 3 vs 5, just change the input to loadmnist.
+        #For example, loadmnist(1, 7)
+        data = loadmnist(3, 5)
+        train_data = data[:int(len(data)*0.8)]
+        validation_data =data[int(len(data)*0.8):]
+
+        #train the model
+        m = neural_net(train_data)
+
+        #evaluate
+        predictions = [m.predict(p) for p in train_data]
+        print "Training Accuracy:", accuracy(train_data, predictions)
+        predictions = [m.predict(p) for p in validation_data]
+        print "Validation Accuracy:", accuracy(validation_data, predictions)
         
 if __name__ == '__main__':
     unittest.main()
