@@ -81,7 +81,7 @@ The `update()` function takes 4 arguments:
 - `delta`: a length 1 Python list containing a 1 by 1 Numpy matrix of `(y - P(y=True| W,x))`.
 - `a`: a length 1 Python list containing a 1 by d Numpy matrix of the feature values of a datapoint.
 
-Fill in `update()`.
+Fill in `update()`. Remember to update `self.bias` as well.
 
 # Step 3.3: Implementing `train()` [10 pts]  
 The `train()` function performs [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to optimize your model. For each iteration, it randomly samples one datapoint with replacement, approximates the true gradients, and updates `weights` via gradient descent. The function takes 4 arguments.
@@ -136,7 +136,7 @@ The `update()` function takes 4 arguments:
 - `lam`: a regularization constant lambda.
 - `rate`: a learning rate
 
-Modify the `update()` function so that it updates the weights for all layers. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
+Modify the `update()` function so that it updates the weights for all layers and the bias terms.. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
 
 # Step 4.3: Evaulating a neural net model [10 pts]
 Your neural network model is now ready for training. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
