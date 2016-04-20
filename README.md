@@ -19,10 +19,11 @@ What you will see in the folder:
 Download mnist.zip from the [course website](https://courses.cs.washington.edu/courses/cse446/16sp/) and extract it to the same folder.
 
 You are **required** to use Python 2.7 and Numpy for vectorizing your calculations. It is **strongly** recommended that you avoid using forloops as much as possible for matrix calculations. If you have not installed Numpy, [Annaconda](https://www.continuum.io/downloads) offers Python 2.7 distribution with various scientific packages including Numpy. 
-# Step 1: Implmenting  `logistic()` [?? pts]
+
+# Step 1: Implmenting  `logistic()` [5 pts]
 In `sgd.py`, you will find an empty function called `logistic()`. The `logistic()` function should take in a Numpy matrix of floats and apply a logistic function `f(x)=1/(1+e^-x)` elementwise. The output should be a numpy matrix with size equal to that of the input.  [Here](https://en.wikipedia.org/wiki/Logistic_regression#Definition_of_the_logistic_function) is the Wikipedia page for logsitic functions if you are not clear on what they are. 
 
-# Step 2: Implementing `accuracy()` [?? pts]
+# Step 2: Implementing `accuracy()` [5 pts]
 We need a way to measure the performance of your model. The `accuracy()` function will do this for you.  
 It takes the follwoing arguments:
 - `data`: a Python list of 1 by 1 Numpy matrices containing true labels. 
@@ -45,7 +46,7 @@ The `model` class also stores a list of bias terms, `bias`. This is structured v
 
 The `model` constructor is already implemented for you. You do not have to change the constructor. 
 
-# Step 3.1: Implementing `predict()`  [?? pts]
+# Step 3.1: Implementing `predict()`  [5 pts]
 The `predict()` function takes in a datapoint and uses the current weight matrices and bias terms to make a prediction. 
 
 Let us first start by explaining the structure of a datapoint. We represent a datapoint as a 2-element dictionary. The first key `label` is mapped to a matrix for the true label, and the second key `features` is mapped to a 1 by d matrix representing the features for the datapoint.
@@ -58,7 +59,7 @@ where *W* is the *d* by *1* matrix in `weights` of the current model and *x* is 
 
 The output should be in the form of a list containing a 1 by 1 matrix; e.g. `[np.matrix(output)]`. Again, this seems like a strange way to store an output. However, this make it easier to extend your model to a general neural net later. Fill in `predict()`. Your `predict()` function only needs to work for the logistic regresion case for now.
 
-# Step 3.2: Implementing `update()` [?? pts]
+# Step 3.2: Implementing `update()` [15 pts]
 Stochastic gradient descent works by making a stochastic approximation of the true gradient of an objective function. 
 
 Our approximation for the loss function is as follows: 
@@ -82,7 +83,7 @@ The `update()` function takes 4 arguments:
 
 Fill in `update()`.
 
-# Step 3.3: Implementing `train()` [?? pts]  
+# Step 3.3: Implementing `train()` [10 pts]  
 The `train()` function performs [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to optimize your model. For each iteration, it randomly samples one datapoint with replacement, approximates the true gradients, and updates `weights` via gradient descent. The function takes 4 arguments.
 - `data`: a list of datapoints
 - `epochs`: &nbsp; the number of epochs to run. An epoch refers to a full pass over the dataset. This means that if you run the algorithm for 5 epochs, you call the `update()` function `5*N` times, where *N* is the number of data points. 
@@ -91,19 +92,19 @@ The `train()` function performs [stochastic gradient descent](https://en.wikiped
 
 Fill in the `train()` function.
 
-# Step 3.4: Tuning your logistic regression model [?? pts]
+# Step 3.4: Tuning your logistic regression model [20 pts]
 Now that your have all functions implemented for logistic regression, you can train your model on the MNist data. The `Submission1` funtion trains your logistic regression model on handwritten 3s and 5s. Do you get validation accuracy over 90%? If not, you might want to debug your implementation.
 
 The regularization constant `lam` is currently at 0.00001, and `eta` is at 0.05. Tweek `lam`, `eta`, and `epochs` to obtain better validation accuracy. Often it is a good idea to start with a high learning rate and decrease it over time.
 
 Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the peformance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
 
-# Step 4: Extending logistic regression to Neural Nets [?? pts]
+# Step 4: Extending logistic regression to Neural Nets
 So far, we have implemented logistic regression as a single layer neural net with a signle output and a logistic activation function. In this section, we will extend our model to a more general multi-layer neural net.  
 
 The basis of learning a neural net is the same as that of logsitic regression. We will simply calculate a partial gradient with repsect to each weight and optimize the weight via gradient descent. The calculatation of the partial derivatives are performed by the algoirthm called backpropagation. The details of the algorithm can be found in the [lecture notes](https://courses.cs.washington.edu/courses/cse446/16sp/) or [here](http://neuralnetworksanddeeplearning.com/chap2.html).
 
-# Step 4.1: Implementing `feedforward()` [?? pts]
+# Step 4.1: Implementing `feedforward()` [10 pts]
 We will start by implementing the feedforward step of the backpropagation algorithm. The `feedforward()` function takes in a datapoint and propagates the input signals towards the output layer. The function outputs a Python list of Numpy matrices, which represent input values and post-synaptic activation values for nodes in non-input layers. We will call this output list `a`.
 
 Let us give you an example. Suppose we have a 3-layer neural net, and our `a` is
@@ -114,7 +115,7 @@ M0 is exactly equal to the features of an input datapoint. M1 stores the post-sy
 
 Fill in `feedforward()`. Also, modify `predict()` so that it uses the last matrix of `a` as a prediction. 
 
-# Step 4.2: Implemengting `backpropagate()` [?? pts]
+# Step 4.2: Implemengting `backpropagate()` [10 pts]
 In this section, we are implementing the backward step of the backpropagation function. The `backpropagate()` function takes 2 arguments:  
 - `a`: the output of `feedforward()`.
 - `label`: the true label for an input datapoint.
@@ -137,7 +138,7 @@ The `update()` function takes 4 arguments:
 
 Modify the `update()` function so that it updates the weights for all layers. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
 
-# Step 4.3: Evaulating a neural net model [?? pts]
+# Step 4.3: Evaulating a neural net model [20 pts]
 Your neural network model is now ready for training. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
 
 Now lets add a single hidden layer with 15 nodes. Does it improve the performance?
