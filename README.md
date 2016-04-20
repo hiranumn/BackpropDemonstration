@@ -138,7 +138,7 @@ The `update()` function takes 4 arguments:
 
 Modify the `update()` function so that it updates the weights for all layers and the bias terms.. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
 
-# Step 4.3: Evaulating a neural net model [10 pts]
+# Step 4.3: Evaulating your neural net model [10 pts]
 Your neural network model is now ready for training. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
 
 Now lets add a single hidden layer with 15 nodes. Does it improve the performance?
