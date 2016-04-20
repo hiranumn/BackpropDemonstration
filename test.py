@@ -38,7 +38,9 @@ class SGDTest(unittest.TestCase):
     
     #training and running your model
     def test_submission(self):
-        #getting data using 80% of data as training and 
+        #getting data using 80% of data as training.
+        #If you want to test soething other than 3 vs 5, just change the input to loadmnist.
+        #For example, loadmnist(1, 7)
         data = loadmnist(3, 5)
         train_data = data[:int(len(data)*0.8)]
         validation_data =data[int(len(data)*0.8):]
