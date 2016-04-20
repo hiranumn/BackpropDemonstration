@@ -1,7 +1,7 @@
 # Logistic Regression and Neural Networks using SGD
-In this assignment you are performing binary classification on handwritten digits from [MNIST](http://yann.lecun.com/exdb/mnist/) database using logisitc regression and neural nets. 
+In this assignment you are performing binary classification on handwritten digits data from [MNIST](http://yann.lecun.com/exdb/mnist/) database using logisitc regression and neural nets. 
 
-Here are some webpages that might help your understandings
+Here are some webpages that might help you understand the material in addition to the lecture slies/notes you can find under our course website. 
 - [Logistic regression (Wikipedia)](https://en.wikipedia.org/wiki/Logistic_regression)
 - [Neural Nets (Wikipedia)](https://en.wikipedia.org/wiki/Artificial_neural_network)
 - [Back Propagation](http://neuralnetworksanddeeplearning.com/chap2.html)
@@ -13,17 +13,14 @@ cd LR_NN_via_SGD
 ```
 What you will see in the folder:
 - `test.py` contains unit tests to check your implementation. Do **NOT** modify this file.
-- `sgd.py` contains functions that train logsitic regression and neural net models using SGD.
+- `sgd.py` contains functions that train logsitic regression and neural net models using SGD. You will be submitting this file.
 - `data.py` contains helper functions that load the MNIST data. Do **NOT** modify this file.
 
 Download mnist.zip from the [course website](https://courses.cs.washington.edu/courses/cse446/16sp/) and extract it to the same folder.
 
-You are **required** to use Python 2.7 and Numpy for vectorizing your calculations.  
-[Annaconda](https://www.continuum.io/downloads) offers Python 2.7 distribution with various scientific packages including Numpy. 
+You are **required** to use Python 2.7 and Numpy for vectorizing your calculations. It is **strongly** recommended that you avoid using forloops as much as possible for matrix calculations. If you have not installed Numpy, [Annaconda](https://www.continuum.io/downloads) offers Python 2.7 distribution with various scientific packages including Numpy. 
 # Step 1: Implmenting  `logistic()` [?? pts]
-In `sgd.py`, you will find an empty function called `logistic()`. The `logistic()` function should take in a Numpy matrix of floats and apply a logistic function `f(x)=1/(1+e^-x)` elementwise. The output should be a numpy matrix whose size is equal to that of the input.  [Here](https://en.wikipedia.org/wiki/Logistic_regression#Definition_of_the_logistic_function) is the Wikipedia page for logsitic functions if you are not clear on what they are. 
-
-Perfrom the unittests by running `test.py` and make sure that you pass the first test.
+In `sgd.py`, you will find an empty function called `logistic()`. The `logistic()` function should take in a Numpy matrix of floats and apply a logistic function `f(x)=1/(1+e^-x)` elementwise. The output should be a numpy matrix with size equal to that of the input.  [Here](https://en.wikipedia.org/wiki/Logistic_regression#Definition_of_the_logistic_function) is the Wikipedia page for logsitic functions if you are not clear on what they are. 
 
 # Step 2: Implementing `accuracy()` [?? pts]
 We need a way to measure the performance of your model. The `accuracy()` function will do this for you.  
