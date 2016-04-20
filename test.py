@@ -17,12 +17,14 @@ class SGDTest(unittest.TestCase):
     def test_predict(self):
         m = model([5,1])
         m.weights = [np.matrix([1,2,1,0,1]).T]
+        m.bias = [np.matrix([0])]
         point = {'features':np.matrix([.4,1,3,.01,.1]), 'label': 1}
         p = m.predict(point)
         self.assertAlmostEqual(p[0,0], 0.995929862284)
         
         m = model([5,1])
         m.weights = [np.matrix([3,5,-3,2,3]).T]
+        m.bias = [np.matrix([0])]
         point = {'features':np.matrix([.4,-0.2,3.1,.01,.1]), 'label': 1}
         p = m.predict(point)
         self.assertAlmostEqual(p[0,0], 0.000153754441135)
@@ -33,9 +35,9 @@ class SGDTest(unittest.TestCase):
         a = accuracy(data, [np.matrix([0]) for i in range(len(data))])
         self.assertAlmostEqual(a, 0.75)
 
+    
     #training and running your model
     def test_submission(self):
-        print "Testing neural net models"
         #getting data using 80% of data as training and 
         data = loadmnist(3, 5)
         train_data = data[:int(len(data)*0.8)]
@@ -49,12 +51,33 @@ class SGDTest(unittest.TestCase):
         print "Training Accuracy:", accuracy(train_data, predictions)
         predictions = [m.predict(p) for p in validation_data]
         print "Validation Accuracy:", accuracy(validation_data, predictions)
+    
 
     def test_feedforward(self):
-        pass
+        m = model([5,3,1])
+        m.weights = [np.arange(5*3).reshape((5,3)), np.matrix([3,5,-3]).T]
+        m.bias = [np.matrix([1,-1,0]), np.matrix([1])]
+        point = {'features':np.matrix([1,-0.1,3,-2,0.1]), 'label': 1}
+        
+        a = m.feedforward(point)
+        answer = [np.matrix([[ 1., -0.1, 3, -2, 0.1]]), np.matrix([[ 0.86989153, 0.86989153, 0.99260846]]), np.matrix([[0.99318172]])]
+        for i in range(len(a)):
+            for j in range(a[i].shape[1]):
+                self.assertAlmostEqual(a[i][0,j], answer[i][0,j])
 
     def test_backpropagate(self):
-        pass
+        m = model([5,3,1])
+        m.weights = [np.arange(5*3).reshape((5,3)), np.matrix([3,5,-3]).T]
+        m.bias = [np.matrix([1,-1,0]), np.matrix([1])]
+        point = {'features':np.matrix([1,-0.1,3,-2,0.1]), 'label': 1}
+        
+        a = m.feedforward(point)
+        delta = m.backpropagate(a, np.matrix([1]))
+        answer = [np.matrix([0.00231508, 0.00385847, -0.00015008]).T, np.matrix([0.00681828])]
+        
+        for i in range(len(delta)):
+            for j in range(delta[i].shape[1]):
+                self.assertAlmostEqual(delta[i][0,j], answer[i][0,j])
         
 if __name__ == '__main__':
     unittest.main()
