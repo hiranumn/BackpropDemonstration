@@ -13,8 +13,10 @@ def accuracy(data, predictions):
 class model:
     def __init__(self, structure):
         self.weights=[]
+        self.bias = []
         for i in range(len(structure)-1):
             self.weights.append(np.random.normal(size=(structure[i], structure[i+1])))
+            self.bias.append(np.random.normal(size=(1, structure[i+1])))
             
     # TODO: Calculate prediction based on model
     def predict(self, point):
