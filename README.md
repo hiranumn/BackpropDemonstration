@@ -93,7 +93,7 @@ The `train()` function performs [stochastic gradient descent](https://en.wikiped
 Fill in the `train()` function.
 
 # Step 3.4: Tuning your logistic regression model [20 pts]
-Now that your have all functions implemented for logistic regression, you can train your model on the MNist data. The `Submission1` funtion trains your logistic regression model on handwritten 3s and 5s. Do you get validation accuracy over 90%? If not, you might want to debug your implementation.
+Now that your have all functions implemented for logistic regression, you can train your model on the MNist data. The `logistic_regression()` funtion trains your logistic regression model on handwritten 3s and 5s. Do you get validation accuracy over 90%? If not, you might want to debug your implementation. Try other pairs of integers if you are interested.
 
 The regularization constant `lam` is currently at 0.00001, and `eta` is at 0.05. Tweek `lam`, `eta`, and `epochs` to obtain better validation accuracy. Often it is a good idea to start with a high learning rate and decrease it over time.
 
@@ -139,7 +139,7 @@ The `update()` function takes 4 arguments:
 Modify the `update()` function so that it updates the weights for all layers and the bias terms.. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
 
 # Step 4.3: Evaulating your neural net model [10 pts]
-Your neural network model is now ready for training. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
+Your neural network model is now ready for trained by the function `neural_net()`. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
 
 Now lets add a single hidden layer with 15 nodes. Does it improve the performance?
 
