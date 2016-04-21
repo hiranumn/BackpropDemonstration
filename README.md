@@ -1,7 +1,7 @@
 # Logistic Regression and Neural Networks using SGD
 In this assignment you are performing binary classification on handwritten digits data from [MNIST](http://yann.lecun.com/exdb/mnist/) database using logisitc regression and neural nets. 
 
-Here are some webpages that might help you understand the material, in addition to the lecture slies/notes you can find under our course website. 
+Here are some webpages that might help you understand the material, in addition to the lecture slides/notes you can find under our course website. 
 - [Logistic regression (Wikipedia)](https://en.wikipedia.org/wiki/Logistic_regression)
 - [Neural Nets (Wikipedia)](https://en.wikipedia.org/wiki/Artificial_neural_network)
 - [Back Propagation](http://neuralnetworksanddeeplearning.com/chap2.html)
@@ -20,8 +20,8 @@ Download mnist.zip from the [course website](https://courses.cs.washington.edu/c
 
 You are **required** to use Python 2.7 and Numpy for vectorizing your calculations. It is **strongly** recommended that you avoid using forloops as much as possible for matrix calculations. If you have not installed Numpy, [Annaconda](https://www.continuum.io/downloads) offers Python 2.7 distribution with various scientific packages including Numpy. 
 
-# Step 1: Implmenting  `logistic()` [5 pts]
-In `sgd.py`, you will find an empty function called `logistic()`. The `logistic()` function should take in a Numpy matrix of floats and apply a logistic function `f(x)=1/(1+e^-x)` elementwise. The output should be a numpy matrix with size equal to that of the input.  [Here](https://en.wikipedia.org/wiki/Logistic_regression#Definition_of_the_logistic_function) is the Wikipedia page for logsitic functions if you are not clear on what they are. 
+# Step 1: Implementing  `logistic()` [5 pts]
+In `sgd.py`, you will find an empty function called `logistic()`. The `logistic()` function should take in a Numpy matrix of floats and apply a logistic function `f(x)=1/(1+e^-x)` elementwise. The output should be a numpy matrix with size equal to that of the input.  [Here](https://en.wikipedia.org/wiki/Logistic_regression#Definition_of_the_logistic_function) is the Wikipedia page for logistic  functions if you are not clear on what they are. 
 
 # Step 2: Implementing `accuracy()` [5 pts]
 We need a way to measure the performance of your model. The `accuracy()` function will do this for you.  
@@ -31,16 +31,16 @@ It takes the following arguments:
 
 Yes, it is a bit strange that this is a list of 1 by 1 matrices, but this will make it easier to extend logistic regression to neural nets later in this assignment. Given `data` and `predictions`, `accuracy()` simply computes `(# correct predictions)/(# predictions made)` and outputs it as a float. Fill in `accuracy()`.
 
-# Step 3: Implementing logsitic regression as a single layer NN
+# Step 3: Implementing logistic regression as a single layer NN
 In this section, you will be implementing logistic regression as a single layer neural net with a single output.   
 
 Let us start by explaining the `model` class. Upon instantiation, the `model` class takes in a Python list of integers indicating the structure of a neural net. The first element of the list indicates the number of inputs, and the last element of the list indicates the number of nodes in the output layer. Any number in the middle indicates the number of nodes in a hidden layer. Let me give you some examples.
-- `[13, 1]` indicates that this is a single layer neural net with 13 inputs and 1 output. Given that we are using logistic activation funtion, **this is exactly equal to logistic regression model with 13 features.**
+- `[13, 1]` indicates that this is a single layer neural net with 13 inputs and 1 output. Given that we are using logistic activation function, **this is exactly equal to logistic regression model with 13 features.**
 - `[10, 4, 3, 3]` indicates that the there are 10 inputs. This is followed by the first hidden layer with 4 nodes and the second hidden layer with 3 nodes. Finally, there is an output layer with 3 nodes.
 
 For now, you can assume that the model is always a single layer NN with a single output. So the argument to the constructor is always `[x,1]`, where *x* is the number of features in a data point. 
 
-The `model` class stores a list of weight matrices, `weights`, where the *i* th matrix corresponds to the weight matrix for the (*i+1*) th layer. For instance, if you have `[M1, M2, M3]`, the *0*th matrix *M1* corresponds to the weight matrix for the 1st hidden layer. The last matrix is always the weight matrix for the output layer. Again, we assume a single layer neural network with a signle output for now. Therefore,  `weights` is a length 1 Python list of *d* by *1* matrix, which corresponds to the weights for the output layer.
+The `model` class stores a list of weight matrices, `weights`, where the *i* th matrix corresponds to the weight matrix for the (*i+1*) th layer. For instance, if you have `[M1, M2, M3]`, the *0*th matrix *M1* corresponds to the weight matrix for the 1st hidden layer. The last matrix is always the weight matrix for the output layer. Again, we assume a single layer neural network with a single output for now. Therefore,  `weights` is a length 1 Python list of *d* by *1* matrix, which corresponds to the weights for the output layer.
 
 The `model` class also stores a list of bias terms, `bias`. This is structured very similar to `weights`. For instance, let us say that you have `bias = [M1, M2]`. Then, M1 corresponds to the bias terms for the first hidden layer M2 corresponds to the bias terms for the last layer. Again, since we are first implementing logistic regression, you can assume that this is always `[np.matrix(b)]` where b is a float.
 
@@ -57,7 +57,7 @@ Prediction = P(y=True| W,x) = logistic(dot(x,W))
 ```
 where *W* is the *d* by *1* matrix in `weights` of the current model and *x* is the 1 by d matrix for the features of a datapoint. 
 
-The output should be in the form of a list containing a 1 by 1 matrix; e.g. `[np.matrix(output)]`. Again, this seems like a strange way to store an output. However, this make it easier to extend your model to a general neural net later. Fill in `predict()`. Your `predict()` function only needs to work for the logistic regresion case for now.
+The output should be in the form of a list containing a 1 by 1 matrix; e.g. `[np.matrix(output)]`. Again, this seems like a strange way to store an output. However, this make it easier to extend your model to a general neural net later. Fill in `predict()`. Your `predict()` function only needs to work for the logistic regression case for now.
 
 # Step 3.2: Implementing `update()` [15 pts]
 Stochastic gradient descent works by making a stochastic approximation of the true gradient of an objective function. 
@@ -85,7 +85,7 @@ Fill in `update()`. Remember to update `self.bias` as well.
 
 # Step 3.3: Implementing `train()` [10 pts]  
 The `train()` function performs [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to optimize your model. For each iteration, it randomly samples one datapoint with replacement, approximates the true gradients, and updates `weights` via gradient descent. The function takes 4 arguments.
-- `data`: a list of datapoints
+- `data`: a list of data points
 - `epochs`: &nbsp; the number of epochs to run. An epoch refers to a full pass over the dataset. This means that if you run the algorithm for 5 epochs, you call the `update()` function `5*N` times, where *N* is the number of data points. 
 - `lam`: a regularization constant.
 - `eta`: a learning rate.
@@ -93,29 +93,29 @@ The `train()` function performs [stochastic gradient descent](https://en.wikiped
 Fill in the `train()` function.
 
 # Step 3.4: Tuning your logistic regression model [20 pts]
-Now that your have all functions implemented for logistic regression, you can train your model on the MNist data. The `logistic_regression()` funtion trains your logistic regression model on handwritten 3s and 5s. Do you get validation accuracy over 90%? If not, you might want to debug your implementation. Try other pairs of integers if you are interested.
+Now that your have all functions implemented for logistic regression, you can train your model on the MNist data. The `logistic_regression()` function trains your logistic regression model on handwritten 3s and 5s. Do you get validation accuracy over 90%? If not, you might want to debug your implementation. Try other pairs of integers if you are interested.
 
 The regularization constant `lam` is currently at 0.00001, and `eta` is at 0.05. Tweek `lam`, `eta`, and `epochs` to obtain better validation accuracy. Often it is a good idea to start with a high learning rate and decrease it over time.
 
-Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the peformance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
+Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the performance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
 
 # Step 4: Extending logistic regression to Neural Nets
-So far, we have implemented logistic regression as a single layer neural net with a signle output and a logistic activation function. In this section, we will extend our model to a more general multi-layer neural net.  
+So far, we have implemented logistic regression as a single layer neural net with a single output and a logistic activation function. In this section, we will extend our model to a more general multi-layer neural net.  
 
-The basis of learning a neural net is the same as that of logsitic regression. We will simply calculate a partial gradient with repsect to each weight and optimize the weight via gradient descent. The calculatation of the partial derivatives are performed by the algoirthm called backpropagation. The details of the algorithm can be found in the [lecture notes](https://courses.cs.washington.edu/courses/cse446/16sp/) or [here](http://neuralnetworksanddeeplearning.com/chap2.html).
+The basis of learning a neural net is the same as that of logistic regression. We will simply calculate a partial gradient with respect to each weight and optimize the weight via gradient descent. The calculation of the partial derivatives are performed by the algorithm called backpropagation. The details of the algorithm can be found in the [lecture notes](https://courses.cs.washington.edu/courses/cse446/16sp/) or [here](http://neuralnetworksanddeeplearning.com/chap2.html).
 
 # Step 4.1: Implementing `feedforward()` [10 pts]
-We will start by implementing the feedforward step of the backpropagation algorithm. The `feedforward()` function takes in a datapoint and propagates the input signals towards the output layer. The function outputs a Python list of Numpy matrices, which represent input values and post-synaptic activation values for nodes in non-input layers. We will call this output list `a`.
+We will start by implementing the feedforward step of the backpropagation algorithm. The `feedforward()` function takes in a datapoint and propagates the input signals towards the output layer. The function outputs a Python list of Numpy matrices, which represent input values and postsynaptic activation values for nodes in non-input layers. We will call this output list `a`.
 
 Let us give you an example. Suppose we have a 3-layer neural net, and our `a` is
 ```
 a=[M0, M1, M2, Mn]
 ```
-M0 is exactly equal to the features of an input datapoint. M1 stores the post-synaptic activation values for the first layer, which can be obtained by combining W and M1. Mn represents the post-synaptic activation for the output layer. This is equal to the prediction of your model given the input datapoint. Notice that these matrices can be calculated dynamically, and you are **strongly** recommended to do so. You are also recommended to use Numpy matrix calculations whenever you can, since Python for-loops are sometimes too costly.
+M0 is exactly equal to the features of an input datapoint. M1 stores the postsynaptic activation values for the first layer, which can be obtained by combining W and M1. Mn represents the postsynaptic activation for the output layer. This is equal to the prediction of your model given the input datapoint. Notice that these matrices can be calculated dynamically, and you are **strongly** recommended to do so. You are also recommended to use Numpy matrix calculations whenever you can, since Python for-loops are sometimes too costly.
 
 Fill in `feedforward()`. Also, modify `predict()` so that it uses the last matrix of `a` as a prediction. 
 
-# Step 4.2: Implemengting `backpropagate()` [10 pts]
+# Step 4.2: Implementing `backpropagate()` [10 pts]
 In this section, we are implementing the backward step of the backpropagation function. The `backpropagate()` function takes 2 arguments:  
 - `a`: the output of `feedforward()`.
 - `label`: the true label for an input datapoint.
@@ -138,12 +138,12 @@ The `update()` function takes 4 arguments:
 
 Modify the `update()` function so that it updates the weights for all layers and the bias terms.. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
 
-# Step 4.3: Evaulating your neural net model [10 pts]
-Your neural network model is now ready for trained by the function `neural_net()`. For a starter, create a signle layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
+# Step 4.3: Evaluating your neural net model [10 pts]
+Your neural network model is now ready for trained by the function `neural_net()`. For a starter, create a single layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
 
-Now lets add a single hidden layer with 15 nodes. Does it improve the performance?
+Now let's add a single hidden layer with 15 nodes. Does it improve the performance?
 
-Try different numbers of hidden nodes/layers to improve your model as much as you can. Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the peformance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
+Try different numbers of hidden nodes/layers to improve your model as much as you can. Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the performance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
 
 # Step 5: Submission
 Submit your `sgd.py` to [cataylst](https://catalyst.uw.edu/collectit/dropbox/summary/akshays/38074).
