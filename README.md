@@ -97,7 +97,7 @@ Now that your have all functions implemented for logistic regression, you can tr
 
 The regularization constant `lam` is currently at 0.00001, and `eta` is at 0.05. Tweek `lam`, `eta`, and `epochs` to obtain better validation accuracy. Often it is a good idea to start with a high learning rate and decrease it over time.
 
-Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the performance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
+Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the performance of your model on the test data. **Make sure your code completes in under 5 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
 
 # Step 4: Extending logistic regression to Neural Nets
 So far, we have implemented logistic regression as a single layer neural net with a single output and a logistic activation function. In this section, we will extend our model to a more general multi-layer neural net.  
@@ -143,7 +143,7 @@ Your neural network model is now ready for trained by the function `neural_net()
 
 Now let's add a single hidden layer with 15 nodes. Does it improve the performance?
 
-Try different numbers of hidden nodes/layers to improve your model as much as you can. Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the performance of your model on the test data. **Make sure your code completes in under 10 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
+Try different numbers of hidden nodes/layers to improve your model as much as you can. Your model will be trained on the full training data (`3` vs `5`) and run on test data you do not have access to. Your grade for this section will partially depend on the performance of your model on the test data. **Make sure your code completes in under 5 minutes for the data you currently have.** You will receive 0 point for this section otherwise.
 
 # Step 5: Submission
 Submit your `sgd.py` to [cataylst](https://catalyst.uw.edu/collectit/dropbox/summary/akshays/38074).
