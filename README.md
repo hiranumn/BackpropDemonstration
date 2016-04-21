@@ -26,8 +26,10 @@ In `sgd.py`, you will find an empty function called `logistic()`. The `logistic(
 # Step 2: Implementing `accuracy()` [5 pts]
 We need a way to measure the performance of your model. The `accuracy()` function will do this for you.  
 It takes the following arguments:
-- `data`: a Python list of 1 by 1 Numpy matrices containing true labels. 
+- `data`: a Python list of datapoints. 
 - `predictions`: a Python list of 1 by 1 Numpy matrices containing your predictions. 
+
+Let us first start by explaining the structure of a datapoint. We represent a datapoint as a 2-element dictionary. The first key `label` is mapped to a matrix for the true label, and the second key `features` is mapped to a 1 by d matrix representing the features for the datapoint.  
 
 Yes, it is a bit strange that this is a list of 1 by 1 matrices, but this will make it easier to extend logistic regression to neural nets later in this assignment. Given `data` and `predictions`, `accuracy()` simply computes `(# correct predictions)/(# predictions made)` and outputs it as a float. Fill in `accuracy()`.
 
@@ -48,8 +50,6 @@ The `model` constructor is already implemented for you. You do not have to chang
 
 # Step 3.1: Implementing `predict()`  [5 pts]
 The `predict()` function takes in a datapoint and uses the current weight matrices and bias terms to make a prediction. 
-
-Let us first start by explaining the structure of a datapoint. We represent a datapoint as a 2-element dictionary. The first key `label` is mapped to a matrix for the true label, and the second key `features` is mapped to a 1 by d matrix representing the features for the datapoint.
 
 Given a feature vector *x*, your prediction should be  
 ```
