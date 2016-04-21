@@ -12,7 +12,7 @@ git clone https://github.com/hiranumn/LR_NN_via_SGD
 cd LR_NN_via_SGD
 ```
 What you will see in the folder:
-- `test.py` contains unit tests to check your implementation. Do **NOT** modify this file.
+- `test.py` contains unit tests to check your implementation. 
 - `sgd.py` contains functions that train logsitic regression and neural net models using SGD. You will be submitting this file.
 - `data.py` contains helper functions that load the MNIST data. Do **NOT** modify this file.
 
