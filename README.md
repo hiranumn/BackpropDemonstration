@@ -31,7 +31,7 @@ It takes the following arguments:
 
 Let us first start by explaining the structure of a datapoint. We represent a datapoint as a 2-element dictionary. The first key `label` is mapped to a matrix for the true label, and the second key `features` is mapped to a 1 by d matrix representing the features for the datapoint.  
 
-Yes, it is a bit strange that this is a list of 1 by 1 matrices, but this will make it easier to extend logistic regression to neural nets later in this assignment. Given `data` and `predictions`, `accuracy()` simply computes `(# correct predictions)/(# predictions made)` and outputs it as a float. Fill in `accuracy()`.
+Yes, it is a bit strange that `predictions` is a list of 1 by 1 matrices, but this will make it easier to extend logistic regression to neural nets later in this assignment. Given `data` and `predictions`, `accuracy()` simply computes `(# correct predictions)/(# predictions made)` and outputs it as a float. Fill in `accuracy()`.
 
 # Step 3: Implementing logistic regression as a single layer NN
 In this section, you will be implementing logistic regression as a single layer neural net with a single output.   
