@@ -36,7 +36,7 @@ In this section, you will be implementing logistic regression as a single layer 
 
 Let us start by explaining the `model` class. Upon instantiation, the `model` class takes in a Python list of integers indicating the structure of a neural net. The first element of the list indicates the number of inputs, and the last element of the list indicates the number of nodes in the output layer. Any number in the middle indicates the number of nodes in a hidden layer. Let me give you some examples.
 - `[13, 1]` indicates that this is a single layer neural net with 13 inputs and 1 output. Given that we are using logistic activation function, **this is exactly equal to logistic regression model with 13 features.**
-- `[10, 4, 3, 3]` indicates that the there are 10 inputs. This is followed by the first hidden layer with 4 nodes and the second hidden layer with 3 nodes. Finally, there is an output layer with 3 nodes.
+- `[10, 4, 3, 3]` indicates that there are 10 inputs. This is followed by the first hidden layer with 4 nodes and the second hidden layer with 3 nodes. Finally, there is an output layer with 3 nodes.
 
 For now, you can assume that the model is always a single layer NN with a single output. So the argument to the constructor is always `[x,1]`, where *x* is the number of features in a data point. 
 
