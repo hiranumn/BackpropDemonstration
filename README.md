@@ -111,7 +111,7 @@ Let us give you an example. Suppose we have a 3-layer neural net, and our `a` is
 ```
 a=[M0, M1, M2, Mn]
 ```
-M0 is exactly equal to the features of an input datapoint. M1 stores the postsynaptic activation values for the first layer, which can be obtained by combining W and M1. Mn represents the postsynaptic activation for the output layer. This is equal to the prediction of your model given the input datapoint. Notice that these matrices can be calculated dynamically, and you are **strongly** recommended to do so. You are also recommended to use Numpy matrix calculations whenever you can, since Python for-loops are sometimes too costly.
+M0 is exactly equal to the features of an input datapoint. M1 stores the postsynaptic activation values for the first layer, which can be obtained by combining W and M1. Mn represents the postsynaptic activation for the output layer. This is equal to the prediction of your model given the input datapoint. Notice that these matrices can be calculated dynamically, and you are **strongly** recommended to do so. You are also advised to use Numpy matrix calculations whenever you can, since Python for-loops are sometimes too costly.
 
 Fill in `feedforward()`. Also, modify `predict()` so that it uses the last matrix of `a` as a prediction. 
 
