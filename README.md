@@ -21,7 +21,7 @@ Download mnist.zip from the [course website](https://courses.cs.washington.edu/c
 You are **required** to use Python 2.7 and Numpy for vectorizing your calculations. It is **strongly** recommended that you avoid using forloops as much as possible for matrix calculations. If you have not installed Numpy, [Annaconda](https://www.continuum.io/downloads) offers Python 2.7 distribution with various scientific packages including Numpy. 
 
 # Step 1: Implementing  `logistic()` [5 pts]
-In `sgd.py`, you will find an empty function called `logistic()`. The `logistic()` function should take in a Numpy matrix of floats and apply a logistic function `f(x)=1/(1+e^-x)` elementwise. The output should be a numpy matrix with size equal to that of the input.  [Here](https://en.wikipedia.org/wiki/Logistic_regression#Definition_of_the_logistic_function) is the Wikipedia page for logistic  functions if you are not clear on what they are. 
+In `sgd.py`, you will find an empty function called `logistic()`. The `logistic()` function should take in a Numpy matrix of floats and apply a logistic function `f(x)=1/(1+e^-x)` elementwise. The output should be a numpy matrix with size equal to that of the input.  [Here](https://en.wikipedia.org/wiki/Logistic_regression#Definition_of_the_logistic_function) is the Wikipedia page for logistic  functions if you are not clear on what they are. Fill in `logistic()`
 
 # Step 2: Implementing `accuracy()` [5 pts]
 We need a way to measure the performance of your model. The `accuracy()` function will do this for you.  
