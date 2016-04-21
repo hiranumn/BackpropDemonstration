@@ -57,7 +57,7 @@ Prediction = P(y=True| W,x) = logistic(dot(x,W))
 ```
 where *W* is the *d* by *1* matrix in `weights` of the current model and *x* is the 1 by d matrix for the features of a datapoint. 
 
-The output should be in the form of a list containing a 1 by 1 matrix; e.g. `[np.matrix(output)]`. Again, this seems like a strange way to store an output. However, this make it easier to extend your model to a general neural net later. Fill in `predict()`. Your `predict()` function only needs to work for the logistic regression case for now.
+The output should be in the form of a 1 by 1 matrix; e.g. `np.matrix(output)`. Again, this seems like a strange way to store an output. However, this make it easier to extend your model to a general neural net later. Fill in `predict()`. Your `predict()` function only needs to work for the logistic regression case for now.
 
 # Step 3.2: Implementing `update()` [15 pts]
 Stochastic gradient descent works by making a stochastic approximation of the true gradient of an objective function. 
