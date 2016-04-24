@@ -53,7 +53,7 @@ The `predict()` function takes in a datapoint and uses the current weight matric
 
 Given a feature vector *x*, your prediction should be  
 ```
-Prediction = P(y=True| W,x,b) = logistic(dot(x,W,b))
+Prediction = P(y=True| W,x,b) = logistic(dot(x,W+b))
 ```
 where *W* is the *d* by *1* matrix in `weights` of the current model, *b* is the bias vector `bias`, and *x* is the 1 by d matrix for the features of a datapoint. 
 
