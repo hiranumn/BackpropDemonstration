@@ -64,16 +64,16 @@ Stochastic gradient descent works by making a stochastic approximation of the tr
 
 Our approximation for the loss function is as follows: 
 ```
-Loss = -1*ln(P(y|W,x)) + lambda*||W||^2 
+Loss = -1*ln(P(y|W,x,b)) + lambda*||W||^2 
 ```
 where lambda is a regularization constant.   
 Then, the partial gradient with respect to W_i becomes
 ```
-lambda * W_i - x_i * (y - P(y=True| W,x))
+lambda * W_i - x_i * (y - P(y=True| W,x,b))
 ```
 Thus, the update rule for gradient **descent** becomes:
 ```
-w_i <-- w_i - eta *( lambda * w_i - x_i * (y - P(y=True| W,x)) )
+w_i <-- w_i - eta *( lambda * w_i - x_i * (y - P(y=True| W,x,b)) )
 ```
 The `update()` function takes 4 arguments:
 - `eta`: a learning rate. This is a float
