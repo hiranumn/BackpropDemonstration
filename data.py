@@ -3,7 +3,7 @@ import numpy as np
 
 
 #loading mnist data.
-def loadmnist(label1, label2, lim=1000):
+def loadmnist(label1, label2, lim=10000):
     print
     print "Loading MNIST data"
     raw = open("mnist.csv").readlines()
