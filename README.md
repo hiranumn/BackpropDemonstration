@@ -78,7 +78,7 @@ w_i <-- w_i - eta *( lambda * w_i - x_i * (y - P(y=True| W,x,b)) )
 The `update()` function takes 4 arguments:
 - `eta`: a learning rate. This is a float
 - `lam`: a regularization constant *lambda*. This is a float.
-- `delta`: a length 1 Python list containing a 1 by 1 Numpy matrix of `(y - P(y=True| W,x))`.
+- `delta`: a length 1 Python list containing a 1 by 1 Numpy matrix of `(y - P(y=True| W,x,b))`.
 - `a`: a length 1 Python list containing a 1 by d Numpy matrix of the feature values of a datapoint.
 
 Fill in `update()`. Remember to update `self.bias` as well.
