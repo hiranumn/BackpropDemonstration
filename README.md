@@ -133,7 +133,7 @@ The error values are stored in a form similar to `a`, and we will call this `del
 ```
 delta = [M1, M2, ... , Mn]
 ```
-Mn is the error terms for the nodes in the output layer. Similarly, M1 is the error terms for the noes in the 1st hidden layer.  
+Mn is the error terms for the nodes in the output layer. Similarly, M1 is the error terms for the nodes in the 1st hidden layer.  
 Fill in `backpropagate()`
 
 # Step 4.3: Modifying `update()` [10 pts]
