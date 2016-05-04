@@ -120,7 +120,16 @@ In this section, we are implementing the backward step of the backpropagation fu
 - `a`: the output of `feedforward()`.
 - `label`: the true label for an input datapoint.
 
-The objective of this functions is to calculate an error term for each node in non-input layer. The error term of node $n$ is the partial derivative of the likelihood function with respect to the pre-synaptic value of $n$. The values are stored in a form similar to `a`, and we will call this `delta`. Here is an example:
+The objective of this functions is to calculate an error term for each node in non-input layer. The error term of a node *n* is the partial derivative of the likelihood function with respect to its pre-synaptic value. Our likelihood function is as follows:
+```
+L=\sum_i ln(P(y^i|x^i,w))
+```
+Since we are doing SGD, we are approximating *L* by a single point. Thus, 
+```
+L=ln(P(y^i|x^i,w))
+```
+
+The values are stored in a form similar to `a`, and we will call this `delta`. Here is an example:
 ```
 delta = [M1, M2, ... , Mn]
 ```
