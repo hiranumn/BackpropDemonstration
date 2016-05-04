@@ -120,7 +120,7 @@ In this section, we are implementing the backward step of the backpropagation fu
 - `a`: the output of `feedforward()`.
 - `label`: the true label for an input datapoint.
 
-The objective of this functions is to calculate an error term for each node in non-input layer. The error term of a node *n* is the partial derivative of the likelihood function with respect to its pre-synaptic value. Our likelihood function is as follows:
+The objective of this functions is to calculate an error term for each node in non-input layer. The error term of a node *n* is the partial derivative of the likelihood function with respect to its **PRE**-synaptic value. Our likelihood function is as follows:
 ```
 L=\sum_i ln(P(y^i|x^i,w))
 ```
