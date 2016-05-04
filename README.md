@@ -64,7 +64,7 @@ Stochastic gradient descent works by making a stochastic approximation of the tr
 
 Our approximation for the loss function is as follows: 
 ```
-Loss = -1*ln(P(y|W,x,b)) + lambda*||W||^2 
+Loss = -1*ln(P(y|W,x,b)) + 0.5*lambda*||W||^2 
 ```
 where lambda is a regularization constant.   
 Then, the partial gradient with respect to W_i becomes
@@ -122,7 +122,7 @@ In this section, we are implementing the backward step of the backpropagation fu
 
 The objective of this functions is to calculate an error term for each node in non-input layer. The error term of a node *n* is the partial derivative of the likelihood function with respect to its **PRE**-synaptic value. Since we are doing SGD, we are approximating *L* by a single point. Thus, 
 ```
-L=ln(P(y^i|x^i,w))
+L = 1*ln(P(y|W,x,b)) - 0.5*lambda*||W||^2 
 ```
 
 The error values are stored in a form similar to `a`, and we will call this `delta`. Here is an example:
@@ -141,7 +141,7 @@ The `update()` function takes 4 arguments:
 - `lam`: a regularization constant lambda.
 - `rate`: a learning rate
 
-Modify the `update()` function so that it updates the weights for all layers and the bias terms.. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
+Modify the `update()` function so that it updates the weights for all layers and the bias terms. Also, change the `train()` function so that it uses `feedforward()`, `backpropagate()`, and the new `update()` function.
 
 # Step 4.3: Evaluating your neural net model [10 pts]
 Your neural network model is now ready for trained by the function `neural_net()`. For a starter, create a single layer neural net with a single output. Again, this should be exactly equal to logistic regression. Although the performance varies due to the stochastic nature of SGD, your accuracy should be very similar to that of your earlier implementation. If not, you might have a bug in your code.
