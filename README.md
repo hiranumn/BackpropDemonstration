@@ -129,7 +129,7 @@ Since we are doing SGD, we are approximating *L* by a single point. Thus,
 L=ln(P(y^i|x^i,w))
 ```
 
-The values are stored in a form similar to `a`, and we will call this `delta`. Here is an example:
+The error values are stored in a form similar to `a`, and we will call this `delta`. Here is an example:
 ```
 delta = [M1, M2, ... , Mn]
 ```
