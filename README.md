@@ -102,7 +102,7 @@ Your model will be trained on the full training data (`3` vs `5`) and run on tes
 # Step 4: Extending logistic regression to Neural Nets
 So far, we have implemented logistic regression as a single layer neural net with a single output and a logistic activation function. In this section, we will extend our model to a more general multi-layer neural net.  
 
-The basis of learning a neural net is the same as that of logistic regression. We will simply calculate a partial gradient with respect to each weight and optimize the weight via gradient descent. The calculation of the partial derivatives are performed by the algorithm called backpropagation. The details of the algorithm can be found in the [lecture notes](https://courses.cs.washington.edu/courses/cse446/16sp/) or [here](http://neuralnetworksanddeeplearning.com/chap2.html).
+The basis of learning a neural net is the same as that of logistic regression. We will simply calculate a partial gradient with respect to each weight and optimize the weight via gradient ascent (or descent). The calculation of the partial derivatives are performed by the algorithm called backpropagation. The details of the algorithm can be found in the [lecture notes](https://courses.cs.washington.edu/courses/cse446/16sp/) or [here](http://neuralnetworksanddeeplearning.com/chap2.html).
 
 # Step 4.1: Implementing `feedforward()` [10 pts]
 We will start by implementing the feedforward step of the backpropagation algorithm. The `feedforward()` function takes in a datapoint and propagates the input signals towards the output layer. The function outputs a Python list of Numpy matrices, which represent input values and postsynaptic activation values for nodes in non-input layers. We will call this output list `a`.
@@ -120,7 +120,7 @@ In this section, we are implementing the backward step of the backpropagation fu
 - `a`: the output of `feedforward()`.
 - `label`: the true label for an input datapoint.
 
-The objective of this functions is to calculate an error term for each node in non-input layer. The values are outputted in a form similar to `a`, and we will call this `delta`. Here is an example:
+The objective of this functions is to calculate an error term for each node in non-input layer. The error term of node $n$ is the partial derivative of the likelihood function with respect to the pre-synaptic value of $n$. The values are stored in a form similar to `a`, and we will call this `delta`. Here is an example:
 ```
 delta = [M1, M2, ... , Mn]
 ```
