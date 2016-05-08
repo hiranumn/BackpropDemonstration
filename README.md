@@ -84,7 +84,7 @@ The `update()` function takes 4 arguments:
 Fill in `update()`. Remember to update `self.bias` as well.
 
 # Step 3.3: Implementing `train()` [10 pts]  
-The `train()` function performs [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to optimize your model. For each iteration, it randomly samples one datapoint with replacement, approximates the true gradients, and updates `weights` via gradient descent. The function takes 4 arguments.
+The `train()` function performs [stochastic gradient descent](https://en.wikipedia.org/wiki/Stochastic_gradient_descent) to optimize your model. For each iteration, it randomly samples one datapoint with replacement, approximates the true gradients, and updates `weights` via `update()`. The function takes 4 arguments.
 - `data`: a list of data points
 - `epochs`: &nbsp; the number of epochs to run. An epoch refers to a full pass over the dataset. This means that if you run the algorithm for 5 epochs, you call the `update()` function `5*N` times, where *N* is the number of data points. 
 - `lam`: a regularization constant.
