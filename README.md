@@ -1,3 +1,5 @@
+If you have a question, please contact me at hiranumn@cs.washington.edu
+
 # Logistic Regression and Neural Networks using SGD
 In this assignment you are performing binary classification on handwritten digits data from [MNIST](http://yann.lecun.com/exdb/mnist/) database using logisitc regression and neural nets. 
 
